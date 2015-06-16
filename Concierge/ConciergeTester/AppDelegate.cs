@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using System;
+using Foundation;
 using UIKit;
 using Concierge.iOS;
 
@@ -27,6 +28,7 @@ namespace ConciergeTester
             #endif
 
             Concierge.iOS.Concierge.SetApplicationKey ("56uxRn65KmNyJsHmREhTr7asbch6kOuyfp5olvm9sQn27ORjgvZpZraUTCdWNUHy");
+            Console.WriteLine ("VERSION: {0}", Concierge.iOS.Concierge.Version);
             return true;
         }
 
