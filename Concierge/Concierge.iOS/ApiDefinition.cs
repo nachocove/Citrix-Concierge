@@ -1,6 +1,7 @@
 ﻿using System;
 
 using UIKit;
+using GLKit;
 using Foundation;
 using ObjCRuntime;
 using CoreGraphics;
@@ -35,7 +36,7 @@ namespace Concierge.iOS
     //     }
     //
     [BaseType (typeof(NSObject))]
-    interface Concierge
+    public interface Concierge
     {
         [Static, Export ("version")]
         string Version { get; set; }
