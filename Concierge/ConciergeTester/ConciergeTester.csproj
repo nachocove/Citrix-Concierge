@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{89E54EA6-4E1D-4670-A9CB-4B270DFF098A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ConciergeTester</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>ConciergeTester</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchExtraArgs>-gcc_flags "-L ${ProjectDir} -lc++ -lFirebase -lWebRTC -licucore -lsqlite3 -ObjC"</MtouchExtraArgs>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>i386</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Calabash">
+      <HintPath>..\packages\Xamarin.TestCloud.Agent.0.13.0\lib\Xamarin.iOS10\Calabash.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Concierge.iOS\Concierge.iOS.csproj">
+      <Project>{D0D71C79-0AFE-4C37-8B42-D5B5FC2C91EF}</Project>
+      <Name>Concierge.iOS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Concierge.bundle\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\Assets.car">
+      <Link>Resources\Concierge.bundle\Assets.car</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\Info.plist">
+      <Link>Resources\Concierge.bundle\Info.plist</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\connecting-light%402x.gif">
+      <Link>Resources\Concierge.bundle\connecting-light%402x.gif</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\connecting%402x.gif">
+      <Link>Resources\Concierge.bundle\connecting%402x.gif</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\joins.mp3">
+      <Link>Resources\Concierge.bundle\joins.mp3</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\leaves.mp3">
+      <Link>Resources\Concierge.bundle\leaves.mp3</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\BLn-qO-twQ-view-jnN-6a-aj1~ipad.nib\objects-8.0+.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\BLn-qO-twQ-view-jnN-6a-aj1~ipad.nib\objects-8.0+.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\BLn-qO-twQ-view-jnN-6a-aj1~ipad.nib\runtime.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\BLn-qO-twQ-view-jnN-6a-aj1~ipad.nib\runtime.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\BLn-qO-twQ-view-jnN-6a-aj1~iphone.nib\objects-8.0+.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\BLn-qO-twQ-view-jnN-6a-aj1~iphone.nib\objects-8.0+.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\BLn-qO-twQ-view-jnN-6a-aj1~iphone.nib\runtime.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\BLn-qO-twQ-view-jnN-6a-aj1~iphone.nib\runtime.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\CSKConciergeViewController~ipad.nib\objects-8.0+.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\CSKConciergeViewController~ipad.nib\objects-8.0+.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\CSKConciergeViewController~ipad.nib\runtime.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\CSKConciergeViewController~ipad.nib\runtime.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\CSKConciergeViewController~iphone.nib\objects-8.0+.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\CSKConciergeViewController~iphone.nib\objects-8.0+.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\CSKConciergeViewController~iphone.nib\runtime.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\CSKConciergeViewController~iphone.nib\runtime.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\CSKRootViewController~ipad.nib\objects-8.0+.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\CSKRootViewController~ipad.nib\objects-8.0+.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\CSKRootViewController~ipad.nib\runtime.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\CSKRootViewController~ipad.nib\runtime.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\CSKRootViewController~iphone.nib\objects-8.0+.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\CSKRootViewController~iphone.nib\objects-8.0+.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\CSKRootViewController~iphone.nib\runtime.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\CSKRootViewController~iphone.nib\runtime.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\wIy-0a-nKP-view-o0V-NS-jVY~ipad.nib\objects-8.0+.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\wIy-0a-nKP-view-o0V-NS-jVY~ipad.nib\objects-8.0+.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\wIy-0a-nKP-view-o0V-NS-jVY~ipad.nib\runtime.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\wIy-0a-nKP-view-o0V-NS-jVY~ipad.nib\runtime.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\wIy-0a-nKP-view-o0V-NS-jVY~iphone.nib\objects-8.0+.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\wIy-0a-nKP-view-o0V-NS-jVY~iphone.nib\objects-8.0+.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge.storyboardc\wIy-0a-nKP-view-o0V-NS-jVY~iphone.nib\runtime.nib">
+      <Link>Resources\Concierge.bundle\CSKConcierge.storyboardc\wIy-0a-nKP-view-o0V-NS-jVY~iphone.nib\runtime.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge~ipad.storyboardc\Info-8.0+.plist">
+      <Link>Resources\Concierge.bundle\CSKConcierge~ipad.storyboardc\Info-8.0+.plist</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge~ipad.storyboardc\Info.plist">
+      <Link>Resources\Concierge.bundle\CSKConcierge~ipad.storyboardc\Info.plist</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge~iphone.storyboardc\Info-8.0+.plist">
+      <Link>Resources\Concierge.bundle\CSKConcierge~iphone.storyboardc\Info-8.0+.plist</Link>
+    </BundleResource>
+    <BundleResource Include="..\Concierge.iOS\SDK\Concierge.bundle\CSKConcierge~iphone.storyboardc\Info.plist">
+      <Link>Resources\Concierge.bundle\CSKConcierge~iphone.storyboardc\Info.plist</Link>
+    </BundleResource>
+  </ItemGroup>
+</Project>
